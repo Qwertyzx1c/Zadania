@@ -22,4 +22,4 @@
  181   SELECT * FROM pracownicy WHERE nazwisko like "k%i";
  182   SELECT id_zesp FROM pracownicy GROUP BY id_zesp HAVING COUNT(*) > 3;
  183   SELECT * FROM pracownicy WHERE placa_pod = (SELECT MIN(placa_pod) FROM pracownicy);
- 184   
+ 184   SELECT id_zesp, COUNT(*) FROM pracownicy GROUP BY id_zesp ORDER BY COUNT(*) DESC LIMIT 1;
