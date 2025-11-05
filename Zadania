@@ -1,24 +1,25 @@
-SELECT MIN(placa_pod), MAX(placa_pod), MIN(placa_pod) - MAX(placa_pod) FROM pracownicy;
-SELECT AVG(placa_od + placa_do) FROM etaty GROUP BY nazwa ORDER BY AVG(placa_od + placa_do) DESC;
-SELECT COUNT(etat) FROM pracownicy WHERE etat = 'PROFESOR';
-SELECT SUM(placa_pod + placa_dod) FROM pracownicy GROUP BY id_zesp;
-SELECT id_zesp, COUNT(*) AS liczba_pracowników FROM pracownicy WHERE id_zesp IS NOT NULL GROUP BY id_zesp HAVING COUNT(*) > 2 ORDER BY liczba_pracowników DESC;
-SELECT etat, AVG(placa_pod), COUNT(*) FROM pracownicy WHERE zatrudniony >= 1990 GROUP BY etat;
-SELECT COUNT(DISTINCT id_prac) FROM pracownicy;
-SELECT etat, AVG(placa_pod) as Srednia_Placa from pracownicy GROUP by etat;
-SELECT etat, MIN(placa_pod) AS min_pensja, MAX(placa_pod) AS max_pensja, AVG(placa_pod) AS srednia_pensja FROM pracownicy GROUP BY etat ORDER BY AVG(placa_pod) DESC;
-SELECT etat, MIN(placa_pod) AS min_pensja, MAX(placa_pod) AS max_pensja, AVG(placa_pod) AS srednia_pensja FROM pracownicy GROUP BY etat ORDER BY etat ASC;\
-SELECT etat, COUNT(*) AS liczba_pracownikow FROM pracownicy GROUP BY etat;
-SELECT etat FROM pracownicy GROUP BY etat HAVING AVG(placa_pod) > 1400;
-SELECT etat FROM pracownicy ORDER BY COUNT(*) DESC;
-SELECT id_zesp, AVG(placa_pod) AS srednia_pensja FROM pracownicy GROUP BY id_zesp;
-SELECT id_zesp, MAX(placa_pod) AS max_pensja FROM pracownicy GROUP BY id_zesp;
-SELECT * FROM pracownicy WHERE placa_pod = (SELECT MIN(placa_pod) FROM pracownicy);
-SELECT * FROM pracownicy WHERE nazwisko LIKE 'K%';
-SELECT * FROM `pracownicy` WHERE placa_pod > 3000
-SELECT * FROM `pracownicy` WHERE year(zatrudniony) >= 2022;
-SELECT * FROM pracownicy WHERE nazwisko like "%k%";
-SELECT * FROM pracownicy WHERE nazwisko like "k%i";
-SELECT id_zesp FROM pracownicy GROUP BY id_zesp HAVING COUNT(*) > 3;
-ELECT id_zesp FROM pracownicy GROUP BY id_zesp HAVING COUNT(*) > 3;
-SELECT id_zesp FROM pracownicy GROUP BY id_zesp ORDER BY COUNT(*) DESC
+ 159   SELECT MIN(placa_pod), MAX(placa_pod), MIN(placa_pod) - MAX(placa_pod) FROM pracownicy;
+ 160   SELECT AVG(placa_od + placa_do) FROM etaty GROUP BY nazwa ORDER BY AVG(placa_od + placa_do) DESC;
+ 161   SELECT COUNT(etat) FROM pracownicy WHERE etat = 'PROFESOR';
+ 162   SELECT SUM(placa_pod + placa_dod) FROM pracownicy GROUP BY id_zesp;
+ 163   SELECT id_zesp, COUNT(*) AS liczba_pracowników FROM pracownicy WHERE id_zesp IS NOT NULL GROUP BY id_zesp HAVING COUNT(*) > 2 ORDER BY liczba_pracowników DESC;
+ 164   SELECT etat, AVG(placa_pod), COUNT(*) FROM pracownicy WHERE zatrudniony >= 1990 GROUP BY etat;
+ 165   SELECT COUNT(DISTINCT id_prac) FROM pracownicy;
+ 166   SELECT etat, AVG(placa_pod) as Srednia_Placa from pracownicy GROUP by etat;
+ 167   SELECT etat, MIN(placa_pod) AS min_pensja, MAX(placa_pod) AS max_pensja, AVG(placa_pod) AS srednia_pensja FROM pracownicy GROUP BY etat ORDER BY AVG(placa_pod) DESC;
+ 168   SELECT etat, MIN(placa_pod) AS min_pensja, MAX(placa_pod) AS max_pensja, AVG(placa_pod) AS srednia_pensja FROM pracownicy GROUP BY etat ORDER BY etat ASC;
+ 169   SELECT etat, COUNT(*) AS liczba_pracownikow FROM pracownicy GROUP BY etat;
+ 170   SELECT etat FROM pracownicy GROUP BY etat HAVING AVG(placa_pod) > 1400;
+ 171   SELECT etat FROM pracownicy ORDER BY COUNT(*) DESC;
+ 172   SELECT id_zesp, AVG(placa_pod) AS srednia_pensja FROM pracownicy GROUP BY id_zesp;
+ 173   SELECT id_zesp, MAX(placa_pod) AS max_pensja FROM pracownicy GROUP BY id_zesp;
+ 174   SELECT YEAR(zatrudniony), COUNT(*) FROM pracownicy GROUP BY zatrudniony;
+ 175   SELECT * FROM pracownicy WHERE placa_pod = (SELECT MIN(placa_pod) FROM pracownicy);
+ 176   SELECT * FROM pracownicy WHERE nazwisko LIKE 'K%';
+ 178   SELECT * FROM `pracownicy` WHERE placa_pod > 3000
+ 179   SELECT * FROM `pracownicy` WHERE year(zatrudniony) >= 2022;
+ 180   SELECT * FROM pracownicy WHERE nazwisko like "%a%";
+ 181   SELECT * FROM pracownicy WHERE nazwisko like "k%i";
+ 182   SELECT id_zesp FROM pracownicy GROUP BY id_zesp HAVING COUNT(*) > 3;
+ 183   SELECT * FROM pracownicy WHERE placa_pod = (SELECT MIN(placa_pod) FROM pracownicy);
+ 184   
