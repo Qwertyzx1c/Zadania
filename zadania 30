@@ -18,3 +18,13 @@ SELECT SUM(wynagrodzenie) FROM pracownicy GROUP BY id_stanowiska ORDER BY id_sta
 SELECT COUNT(nazwisko) FROM autorzy WHERE nazwisko LIKE 'B%' GROUP BY nazwisko ORDER BY (LEFT(nazwisko,1));
 SELECT LENGTH(nazwisko) FROM autorzy GROUP BY nazwisko HAVING LENGTH(nazwisko) = LENGTH(nazwisko)
 SELECT *, length(gatunek) FROM gatunki GROUP BY LENGTH (gatunek) HAVING LENGTH(gatunek) > 8;
+SELECT *, COUNT(LENGTH(wydawnictwo)) FROM wydawnictwa GROUP BY LENGTH(LEFT(wydawnictwo,1));
+SELECT *, AVG(LENGTH(login)) FROM czytelnicy GROUP BY miasto ORDER BY AVG(LENGTH(login)) DESC:
+SELECT *,COUNT(ilosc) FROM sprzedaz GROUP BY id_czytelnika HAVING COUNT(ilosc) > 2;
+SELECT *, AVG(cena_netto) FROM ksiazki GROUP BY id_gatunku HAVING cena_netto != AVG(cena_netto);
+SELECT *, SUM(cena_netto) FROM ksiazki GROUP BY id_gatunku ORDER BY SUM(cena_netto) DESC;
+SELECT *, COUNT(telefon) FROM czytelnicy WHERE telefon is not null GROUP BY miasto;
+SELECT *, COUNT(id_wypozyczenia) FROM wypozyczenia GROUP BY id_ksiazki HAVING COUNT(id_wypozyczenia) > 5;
+SELECT *, AVG(ilosc) FROM sprzedaz GROUP BY id_ksiazki HAVING AVG(ilosc) > 1;
+SELECT *, COUNT(id_stanowiska) FROM pracownicy WHERE wynagrodzenie > 3000 GROUP BY id_stanowiska;
+SELECT *, COUNT(LENGTH(nazwisko)) FROM czytelnicy GROUP BY LENGTH(LEFT(nazwisko,1)) ORDER BY COUNT(LENGTH(nazwisko));
