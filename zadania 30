@@ -1,0 +1,10 @@
+SELECT id_gatunku, COUNT(*) FROM ksiazki GROUP BY id_gatunku ORDER BY COUNT(*) DESC;
+SELECT AVG(cena_netto) FROM ksiazki GROUP BY id_autora HAVING AVG(cena_netto) > 30;
+SELECT SUM(cena_netto) FROM ksiazki GROUP BY id_wydawnictwa ORDER BY SUM(cena_netto) ASC;
+SELECT *, COUNT(id_autora) FROM ksiazki GROUP BY id_autora HAVING COUNT(id_autora) > 1;
+SELECT *, MIN(cena_netto), MAX(cena_netto) FROM ksiazki GROUP BY id_gatunku ORDER BY MAX(cena_netto) DESC;
+SELECT COUNT(miasto) FROM czytelnicy GROUP BY miasto HAVING COUNT(miasto) > 1;
+SELECT *, COUNT(id_czytelnika) FROM czytelnicy WHERE email LIKE '%@pl%' ORDER BY miasto ASC;
+SELECT AVG(length(nazwisko)) FROM czytelnicy ORDER BY AVG(length(nazwisko)) DESC;
+SELECT *, SUM(ilosc) FROM sprzedaz GROUP BY id_ksiazki HAVING SUM(ilosc) > 1;
+SELECT MAX(ilosc) FROM sprzedaz GROUP BY id_czytelnika ORDER BY ilosc DESC;
