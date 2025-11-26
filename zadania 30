@@ -8,3 +8,13 @@ SELECT *, COUNT(id_czytelnika) FROM czytelnicy WHERE email LIKE '%@pl%' ORDER BY
 SELECT AVG(length(nazwisko)) FROM czytelnicy ORDER BY AVG(length(nazwisko)) DESC;
 SELECT *, SUM(ilosc) FROM sprzedaz GROUP BY id_ksiazki HAVING SUM(ilosc) > 1;
 SELECT MAX(ilosc) FROM sprzedaz GROUP BY id_czytelnika ORDER BY ilosc DESC;
+SELECT COUNT(DISTINCT(ilosc)) FROM sprzedaz GROUP BY id_czytelnika;
+SELECT COUNT(id_czytelnika) FROM wypozyczenia GROUP BY id_ksiazki HAVING COUNT(id_czytelnika) > 3;
+SELECT COUNT(id_czytelnika) FROM wypozyczenia GROUP BY id_czytelnika ORDER BY id_czytelnika DESC;
+SELECT *, COUNT(DISTINCT(id_ksiazki)) FROM wypozyczenia GROUP BY id_czytelnika HAVING COUNT(DISTINCT(id_ksiazki)) > 2;
+SELECT COUNT(id_stanowiska) FROM pracownicy GROUP BY id_stanowiska ORDER BY COUNT(id_stanowiska) ASC;
+SELECT *, AVG(wynagrodzenie) FROM pracownicy GROUP BY id_stanowiska HAVING AVG(wynagrodzenie) > 4000;
+SELECT SUM(wynagrodzenie) FROM pracownicy GROUP BY id_stanowiska ORDER BY id_stanowiska DESC;
+SELECT COUNT(nazwisko) FROM autorzy WHERE nazwisko LIKE 'B%' GROUP BY nazwisko ORDER BY (LEFT(nazwisko,1));
+SELECT LENGTH(nazwisko) FROM autorzy GROUP BY nazwisko HAVING LENGTH(nazwisko) = LENGTH(nazwisko)
+SELECT *, length(gatunek) FROM gatunki GROUP BY LENGTH (gatunek) HAVING LENGTH(gatunek) > 8;
