@@ -1,0 +1,15 @@
+SELECT Nazwa, Cena FROM produkty WHERE Cena > 5;
+SELECT Imie, Nazwisko, Email FROM klienci WHERE Miasto IN ('Lublin');
+SELECT ID, ID_produktu, Ilosc, DataZamowienia FROM zamowienia WHERE ID_klienta = 1;
+SELECT Nazwa, Adres FROM dostawcy WHERE nazwa LIKE 'Dostawca%';
+SELECT Imie, Nazwisko FROM klienci WHERE Email LIKE "%kowalski%";
+SELECT Nazwa, DataDodania FROM produkty WHERE DataDodania > '2010-01-01';
+SELECT Imie, Nazwisko FROM klienci WHERE DataUrodzenia BETWEEN "1990-01-01" AND '1999-01-01';
+SELECT ID, DataZamowienia FROM zamowienia WHERE MONTH(DataZamowienia) = 12;
+SELECT ROUND(AVG(Pensja), 2) FROM pracownicy;
+SELECT COUNT(grupa) FROM produkty WHERE grupa = 'Owoc';
+SELECT Miasto, COUNT(Miasto) FROM klienci GROUP BY Miasto ORDER BY COUNT(Miasto) ASC;
+SELECT ID, SUM(Ilosc) FROM zamowienia GROUP BY ID;
+SELECT Imie, Nazwisko, Pensja FROM pracownicy ORDER BY Pensja DESC;
+SELECT ID_klienta, Ilosc FROM zamowienia WHERE Ilosc > 1;
+SELECT grupa, AVG(Cena) FROM produkty GROUP BY grupa HAVING AVG(Cena) > 5 ORDER BY AVG(Cena) DESC;
