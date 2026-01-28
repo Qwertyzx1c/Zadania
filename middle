@@ -1,0 +1,24 @@
+SELECT AVG(cena) FROM ksiazki;
+SELECT COUNT(*) FROM ksiazki;
+SELECT tytul, max(cena) FROM ksiazki;
+SELECT tytul, min(cena) FROM ksiazki;
+SELECT sum(cena) FROM ksiazki;
+
+SELECT CONCAT(imie, '', nazwisko) FROM klienci;
+SELECT UPPER(tytul) FROM ksiazki;
+SELECT lower(tytul) FROM ksiazki;
+SELECT length(tytul) FROM ksiazki;
+SELECT substring(imie, 1, 3) FROM klienci;
+
+SELECT round(AVG(cena), 2) FROM ksiazki GROUP BY id_gatunku;
+SELECT MAX(cena) - MIN(cena) FROM ksiazki GROUP BY id_gatunku;
+SELECT tytul FROM książki GROUP BY tytul HAVING Cena < AVG(Cena);
+SELECT MAX(wynagrodzenie) - MIN(wynagrodzenie) FROM pracownicy;
+SELECT SUM(wynagrodzenie), AVG(wynagrodzenie) FROM pracownicy GROUP BY id_stanowiska;
+
+SELECT substring(imie, 1, 1), substring(nazwisko, 1, 3) FROM klienci;
+SELECT REPLACE(tytul, ' ', '_') FROM ksiazki;
+SELECT tytul FROM ksiazki WHERE tytul LIKE '%a%';
+SELECT concat(ksiazki.tytul, " ", gatunki.gatunek) AS 'Tytuł(Gatunek)'
+FROM książki INNER JOIN gatunki ON ksiazki.id_gatunku = gatunki.id_gatunku;
+SELECT substring(kod_pocztowy, 1, 2) FROM klienci;
