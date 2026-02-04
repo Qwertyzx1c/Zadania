@@ -22,3 +22,8 @@ SELECT tytul FROM ksiazki WHERE tytul LIKE '%a%';
 SELECT concat(ksiazki.tytul, " ", gatunki.gatunek) AS 'Tytuł(Gatunek)'
 FROM książki INNER JOIN gatunki ON ksiazki.id_gatunku = gatunki.id_gatunku;
 SELECT substring(kod_pocztowy, 1, 2) FROM klienci;
+
+SELECT cena , 100.0 * COUNT(cena) / ( SELECT COUNT(cena) FROM ksiazki ) AS procent FROM ksiazki WHERE cena GROUP BY cena;
+SELECT id_klienta, AVG(id_ksiazki) FROM sprzedaz WHERE id_klienta GROUP BY id_klienta;
+SELECT wynagrodzenie , 100.0 * COUNT(wynagrodzenie) / ( SELECT COUNT(wynagrodzenie) FROM pracownicy) AS procent FROM pracownicy WHERE wynagrodzenie GROUP BY wynagrodzenie;
+SELECT id_wydawnictwa, count(id_wydawnictwa) FROM ksiazki WHERE id_wydawnictwa GROUP BY id_autora ORDER BY id_autora;
