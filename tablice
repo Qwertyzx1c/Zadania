@@ -1,0 +1,34 @@
+import string
+import random
+
+tablice = random.choice(["litery", "liczby"])
+
+for tablice in range(1):
+    print(f"{tablice}")
+
+
+
+litery = print(string.ascii_uppercase)
+liczby = print(string.digits)
+
+# print(string.ascii_letters)
+
+# random.choice([4, 0, 0, 2, 450.7])   
+
+
+
+# wielolinijkowy_teskt = """Jakis dlugi tekst"""
+
+# def xd():
+#     """
+#     Ta funckja robi "xd"
+#     """
+#     for _ in range(5):
+#         print("x/d/xd")
+
+# xd()
+
+# imie = "Kacper"
+# stopien = "Sierżant"
+# wiek = 45
+# print(f"W 13 Posterunku, {imie} Pazura miał stopień {stopien}, a aktualnie ma lat {wiek}")
