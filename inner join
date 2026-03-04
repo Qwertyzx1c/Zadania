@@ -5,3 +5,5 @@ SELECT COUNT(wypozyczenia.id_ksiazki), czytelnicy.imie, czytelnicy.nazwisko FROM
 SELECT COUNT(sprzedaz.ilosc), gatunki.gatunek FROM sprzedaz INNER JOIN gatunki ON sprzedaz.id_ksiazki = gatunki.id_gatunku GROUP BY gatunki.gatunek;
 SELECT imie, nazwisko , wynagrodzenie FROM pracownicy GROUP BY id_pracownika HAVING wynagrodzenie > AVG(wynagrodzenie);
 SELECT ksiazki.tytul, autorzy.imie FROM ksiazki INNER JOIN autorzy ON ksiazki.id_autora = autorzy.id_autora WHERE imie LIKE 'A%';
+SELECT wypozyczenia.id_ksiazki, sprzedaz.id_czytelnika FROM wypozyczenia INNER JOIN sprzedaz ON wypozyczenia.id_ksiazki = sprzedaz.id_ksiazki GROUP BY id_czytelnika;
+SELECT COUNT(pracownicy.id_stanowiska), stanowiska.nazwa FROM pracownicy INNER JOIN stanowiska ON pracownicy.id_stanowiska = stanowiska.id_stanowiska GROUP BY stanowiska.id_stanowiska ORDER BY COUNT(pracownicy.id_stanowiska) DESC;
