@@ -1,15 +1,15 @@
 import string
 import random
 
-tablice = random.choice(["litery", "liczby"])
+# tablice = random.choice(["litery", "liczby"])
 
-for tablice in range(1):
-    print(f"{tablice}")
+# for tablice in range(1):
+#     print(f"{tablice}")
 
 
 
-litery = print(string.ascii_uppercase)
-liczby = print(string.digits)
+# litery = print(string.ascii_uppercase)
+# liczby = print(string.digits)
 
 # print(string.ascii_letters)
 
@@ -32,3 +32,17 @@ liczby = print(string.digits)
 # stopien = "Sierżant"
 # wiek = 45
 # print(f"W 13 Posterunku, {imie} Pazura miał stopień {stopien}, a aktualnie ma lat {wiek}")
+
+klucz = int(input('Podaj klucz: '))
+tekst = input('Podaj teskt do zaszyfrowania: ')
+
+
+def szyfr():
+    for x in tekst:
+        numer = ord(x)
+        print(numer)
+        litera = chr(numer+klucz)
+        zaszyfrowany += litera
+    return zaszyfrowany
+
+szyfr()
