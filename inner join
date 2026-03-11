@@ -7,3 +7,8 @@ SELECT imie, nazwisko , wynagrodzenie FROM pracownicy GROUP BY id_pracownika HAV
 SELECT ksiazki.tytul, autorzy.imie FROM ksiazki INNER JOIN autorzy ON ksiazki.id_autora = autorzy.id_autora WHERE imie LIKE 'A%';
 SELECT wypozyczenia.id_ksiazki, sprzedaz.id_czytelnika FROM wypozyczenia INNER JOIN sprzedaz ON wypozyczenia.id_ksiazki = sprzedaz.id_ksiazki GROUP BY id_czytelnika;
 SELECT COUNT(pracownicy.id_stanowiska), stanowiska.nazwa FROM pracownicy INNER JOIN stanowiska ON pracownicy.id_stanowiska = stanowiska.id_stanowiska GROUP BY stanowiska.id_stanowiska ORDER BY COUNT(pracownicy.id_stanowiska) DESC;
+SELECT miasto FROM czytelnicy GROUP BY miasto HAVING COUNT(miasto) <= 1;
+SELECT tytul, cena_netto FROM ksiazki WHERE cena_netto > 40.00;
+SELECT czytelnicy.imie, COUNT(wypozyczenia.id_wypozyczenia) FROM czytelnicy INNER JOIN wypozyczenia ON czytelnicy.id_czytelnika = wypozyczenia.id_czytelnika GROUP BY wypozyczenia.id_czytelnika ORDER BY COUNT(wypozyczenia.id_wypozyczenia) DESC;
+SELECT imie, nazwisko FROM czytelnicy WHERE miasto = 'Poznan';
+SELECT ksiazki.tytul, autorzy.imie, autorzy.nazwisko FROM ksiazki INNER JOIN autorzy ON ksiazki.id_autora = autorzy.id_autora WHERE autorzy.imie = 'Harlan';
