@@ -37,12 +37,24 @@ klucz = int(input('Podaj klucz: '))
 tekst = input('Podaj teskt do zaszyfrowania: ')
 
 
-def szyfr():
+def szyfr(tekst, klucz):
     for x in tekst:
         numer = ord(x)
         print(numer)
         litera = chr(numer+klucz)
-        zaszyfrowany += litera
-    return zaszyfrowany
+        zaszyfrowany = litera
+        return zaszyfrowany
 
-szyfr()
+x = szyfr(tekst,klucz)
+
+
+def descrypt(tekst,klucz):
+    for x in tekst:
+        numer = ord(x)
+        print(numer)
+        litera = chr(numer-klucz)
+        zaszyfrowany = litera
+        return zaszyfrowany
+print(x)
+print(descrypt(x, klucz))
+descrypt(tekst,klucz)
