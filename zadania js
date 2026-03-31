@@ -1,0 +1,14 @@
+1.
+const div = document.createElement("div")
+div.textContent = "div"
+
+const body = document.querySelector("body")
+body.appendChild(div)
+
+2.
+const czerwony = document.querySelector("h1")
+czerwony.style.color = "red"
+
+3.
+const obrazek = document.querySelector("img")
+obrazek.innerHTML = 
