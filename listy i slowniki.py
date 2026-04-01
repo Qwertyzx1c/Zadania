@@ -41,3 +41,11 @@ my_dict = {
 # 9.
 # if 'nazwisko' in my_dict:
 #     print('Istnieje')
+
+10.
+
+del my_dict["miasto"]
+del my_dict["imie"]
+del my_dict["nazwisko"]
+del my_dict["wiek"]
+print(my_dict)
