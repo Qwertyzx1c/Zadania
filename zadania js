@@ -103,8 +103,10 @@ function addElement() {
 
 17.
 function removeElements() {
-  var listItems = document.querySelectorAll('details > summary > ul > li');
-  for (var i = 0; i < listItems.length; i += 2) {
+  var listItems = document.querySelectorAll('details > ul > li');
+  for (var i = 1; i < listItems.length; i += 2) {
     listItems[i].remove()
   }
 }
+
+18.
