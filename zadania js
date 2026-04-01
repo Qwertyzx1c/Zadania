@@ -118,3 +118,13 @@ function addParagraph(tekst) {
   document.querySelector('section').appendChild(newParagraph);
   document.querySelector('#newParagraph').value = ' '
   }
+
+19.
+const title = document.querySelector('.title')
+title.textContent = 'DOM Training Arena'
+
+20.
+const item = document.querySelector('.nav-item a')
+item.firstChild.textContent = 'Start'
+
+21.
