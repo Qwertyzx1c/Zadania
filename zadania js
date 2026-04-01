@@ -113,8 +113,8 @@ function removeElements() {
 function addParagraph(tekst) {
   event.preventDefault();
   var text = document.querySelector('#newParagraph').value;
-  var newParagraph = document.querySelector('p');
+  var newParagraph = document.querySelector('details > section > p');
   newParagraph.textContent = text;
   document.querySelector('section').appendChild(newParagraph);
-  document.querySelector('#newParagraph').value = ' ';
+  document.querySelector('#newParagraph').value = ' '
   }
