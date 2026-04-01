@@ -110,3 +110,11 @@ function removeElements() {
 }
 
 18.
+function addParagraph(tekst) {
+  event.preventDefault();
+  var text = document.querySelector('#newParagraph').value;
+  var newParagraph = document.querySelector('p');
+  newParagraph.textContent = text;
+  document.querySelector('section').appendChild(newParagraph);
+  document.querySelector('#newParagraph').value = ' ';
+  }
