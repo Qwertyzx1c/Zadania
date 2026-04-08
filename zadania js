@@ -128,3 +128,20 @@ const item = document.querySelector('.nav-item a')
 item.firstChild.textContent = 'Start'
 
 21.
+const lista = document.querySelector(".menu-list li")
+const text = lista.textContent;
+console.log(text);
+
+22.
+const div = document.querySelector(".card.highlight")
+div.classList.add('active');
+
+23.
+const karta = document.querySelector(".card .card-header")
+karta.textContent = 'Zmieniona karta'
+
+24.
+const dodatek = document.querySelector("details .info-text")
+dodatek.textContent = 'Jan Paweł 2 papież polak'
+
+25.
