@@ -184,11 +184,12 @@ const li3 = document.createElement("li")
 li3.textContent = "Nowy Element"
 const menu = document.querySelector(".menu-list")
 menu.appendChild(li)
-menuappendChild(li2)
+menu.appendChild(li2)
 menu.appendChild(li3)
 
 13.
-const create = document.createElement("div class ='card'")
+const create = document.createElement("div'")
+create.classList.add("card)
 const sekcja = document.querySelector(".cards-section")
 sekcja.appendChild(create)
 
@@ -240,3 +241,43 @@ const remove = document.querySelectorAll(".removable")
 for (let element of remove ){
   element.remove()
 }
+
+22.
+const dynamo = document.querySelector("#dynamic-list > li:nth-last-child(1)")
+const lisc = document.querySelector("#dynamic-list")
+lisc.removeChild(dynamo)
+
+23.
+const card = document.querySelector(".card[data-id='1']")
+card.remove()
+
+24.
+const boxy = document.querySelectorAll(".box")
+const wp = document.querySelector("#insertion-container")
+boxy.forEach((elements)=>
+wp.remove(boxy))
+
+25.
+const detale = document.querySelector("details")
+details.remove()
+
+26.
+const pw = document.querySelectorAll("input")
+pw.forEach(inputs => {
+  console.log(inputs.name)
+})
+
+27.
+const mail = document.querySelector("input[name='email']")
+mail.name = "user-email"
+
+28.
+const light = document.querySelector(".card-highlight")
+light.setAttribute('data-test', 123)
+
+29.
+const menu = document.querySelectorAll(".menu-list li")
+menu.forEach((elementy)=>
+elementy.textContent = "Zmieniono")
+
+30.
