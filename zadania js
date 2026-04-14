@@ -157,6 +157,9 @@ const wybierz = document.querySelector(".select")
 wybierz.value = "de"
 
 9.
-
+const content = document.querySelector(".checkbox")
+content.checked = true
 
 10.
+const div = document.createElement(".deep-text")
+div.classList.add('highlight');
