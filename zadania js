@@ -119,29 +119,39 @@ function addParagraph(tekst) {
   document.querySelector('#newParagraph').value = ' '
   }
 
-19.
+
+
+
+ZADANIA V2
+1.
 const title = document.querySelector('.title')
 title.textContent = 'DOM Training Arena'
 
-20.
+2.
 const item = document.querySelector('.nav-item a')
 item.firstChild.textContent = 'Start'
 
-21.
+3.
 const lista = document.querySelector(".menu-list li")
 const text = lista.textContent;
 console.log(text);
 
-22.
+4.
 const div = document.querySelector(".card.highlight")
 div.classList.add('active');
 
-23.
+5.
 const karta = document.querySelector(".card .card-header")
 karta.textContent = 'Zmieniona karta'
 
-24.
+6.
 const dodatek = document.querySelector("details .info-text")
 dodatek.textContent = 'Jan Paweł 2 papież polak'
 
-25.
+7.
+const imie = document.createElement("label input")
+imie.setAttribute("value", 'imie')
+
+8.
+const wybierz = document.querySelector(".select")
+select.value = "de"
