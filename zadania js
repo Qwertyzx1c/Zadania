@@ -19,18 +19,18 @@ const paragrafRemove = paragraf.querySelector("p")
 paragraf.removeChild(paragrafRemove)
 
 5.
-const div = document.createElement("div")
-div.textContent = "div"
-div.classList.add('nowak');
+const div2 = document.createElement("div")
+div2.textContent = "div"
+div2.classList.add('nowak');
 
-const body = document.querySelector("body")
-body.appendChild(div)
+const body2 = document.querySelector("body")
+body2.appendChild(div2)
 
 
 6.
-const li = document.createElement("li")
-li.textContent = "li"
-li.classList.add('active');
+const li4 = document.createElement("li")
+li4.textContent = "li"
+li4.classList.add('active');
 
 const activeListItem = document.querySelector('.active');
 activeListItem.classList.remove('.active');
@@ -259,7 +259,7 @@ wp.remove(boxy))
 
 25.
 const detale = document.querySelector("details")
-details.remove()
+detale.remove()
 
 26.
 const pw = document.querySelectorAll("input")
@@ -281,3 +281,9 @@ menu.forEach((elementy)=>
 elementy.textContent = "Zmieniono")
 
 30.
+const kkarta = document.querySelector(".card")
+kkarta.classList.add('processed');
+const data2 = document.querySelector(".card")
+data2(data.status) = "done"
+
+31.
