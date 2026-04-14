@@ -161,5 +161,28 @@ const content = document.querySelector(".checkbox")
 content.checked = true
 
 10.
-const div = document.createElement(".deep-text")
+const div = document.createElement("class")
 div.classList.add('highlight');
+
+const body = document.querySelector(".deep-text")
+body.appendChild(div)
+
+11.
+const div = document.createElement("li")
+div.textContent = "Nowy Element"
+const body = document.querySelector("#dynamic-list")
+body.appendChild(div)
+
+12.
+const li = document.createElement("li")
+li.textContent = "Nowy Element"
+const li2 = document.createElement("li")
+li2.textContent = "Nowy Element"
+const li3 = document.createElement("li")
+li3.textContent = "Nowy Element"
+const body = document.querySelector(".menu-list")
+body.appendChild(li)
+body.appendChild(li2)
+body.appendChild(li3)
+
+13.
