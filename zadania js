@@ -287,3 +287,66 @@ const data2 = document.querySelector(".card")
 data2(data.status) = "done"
 
 31.
+const element = document.querySelector("#add_item_bttn")
+element.addEventListener("click", () => {
+  const item_input = document.querySelector("#item-input").value
+
+  const li = document.querySelector("li")
+  li.textContent = item_input
+  document.querySelector("#dynamic-list").appendChild(li)
+  document.querySelector("#item-input").value
+ = ' '
+})
+
+32.
+const item_input = document.querySelector("#item-input")
+item_input.addEventListener("input", (event) => {
+  console.log(event.target.value)
+})
+
+33.
+const insert_before_btn = document.querySelector("#insert-before-btn")
+insert_before_btn.addEventListener("click", () => {
+  const box = document.querySelector("div")
+  box.classList.add("box")
+  const insertion_conteiner =  document.querySelector("#insertion-container")
+  insertion_conteiner.prepend(box)
+})
+
+34.
+
+35.
+const removable = document.querySelectorAll(".removable")
+
+for(let element of removable){
+  element.addEventListener("click", (event)=> {
+    event.target.remove();
+  })
+}
+
+36.
+
+37.
+
+38.
+
+39.
+const cards = document.querySelectorAll(".card")
+for(let card of cards){
+  card.addEventListener("mouseover", (event) => {
+    event.target.style.backgroundColor = "green"
+  })
+
+  card.addEventListener("mouseout", (event)=>{
+    event.target.style.backgroundColor = "red"
+  })
+}
+
+40.
+const input = document.querySelector("input[name = 'nanme]")
+
+input.addEventListener("keydown", (event) =>{
+  if(event.key === "Enter") {
+    console.log(event.target.value)
+  }
+})
