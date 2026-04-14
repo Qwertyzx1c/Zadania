@@ -230,3 +230,13 @@ const details = document.querySelector("details")
 details.appendChild(pa)
 
 20.
+const przycisk = document.createElement("button")
+przycisk.textContent = "przycisk"
+const button = document.querySelector(".playground")
+button.append(przycisk)
+
+21.
+const remove = document.querySelectorAll(".removable")
+for (let element of remove ){
+  element.remove()
+}
