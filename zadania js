@@ -163,17 +163,17 @@ const content = document.querySelector(".checkbox")
 content.checked = true
 
 10.
-const div = document.createElement("class")
-div.classList.add('highlight');
+const deep = document.createElement("class")
+deep.classList.add('highlight');
 
-const body = document.querySelector(".deep-text")
-body.appendChild(div)
+const text = document.querySelector(".deep-text")
+text.appendChild(deep)
 
 11.
-const div = document.createElement("li")
-div.textContent = "Nowy Element"
-const body = document.querySelector("#dynamic-list")
-body.appendChild(div)
+const list2 = document.createElement("li")
+list2.textContent = "Nowy Element"
+const dynam = document.querySelector("#dynamic-list")
+dynam.appendChild(list2)
 
 12.
 const li = document.createElement("li")
@@ -182,21 +182,21 @@ const li2 = document.createElement("li")
 li2.textContent = "Nowy Element"
 const li3 = document.createElement("li")
 li3.textContent = "Nowy Element"
-const body = document.querySelector(".menu-list")
-body.appendChild(li)
-body.appendChild(li2)
-body.appendChild(li3)
+const menu = document.querySelector(".menu-list")
+menu.appendChild(li)
+menuappendChild(li2)
+menu.appendChild(li3)
 
 13.
 const create = document.createElement("div class ='card'")
-const body = document.querySelector(".cards-section")
-body.appendChild(create)
+const sekcja = document.querySelector(".cards-section")
+sekcja.appendChild(create)
 
 14.
-const div = document.createElement(".box")
-div.textContent = "Nowy Element"
-const body = document.querySelector(".boxes-container")
-body.appendChild(div)
+const box = document.createElement(".box")
+box.textContent = "Nowy Element"
+const stop = document.querySelector(".boxes-container")
+stop.appendChild(box)
 
 15.
 const p = document.createElement("p")
@@ -206,10 +206,10 @@ area.appendChild(p)
 
 16.
 function addElement() {
-  var list = document.querySelector('#insertion-container');
-  var newItem = document.createElement('.box');
-  newItem.textContent = 'Nowy element';
-  list.insertBefore(newItem, list.firstChild);
+  var lista = document.querySelector('#insertion-container');
+  var nowyItem = document.createElement('.box');
+  nowyItem.textContent = 'Nowy element';
+  lista.insertBefore(nowyItem, lista.firstChild);
 }
 
 17.
@@ -228,3 +228,5 @@ const pa = document.createElement("p")
 pa.textContent = "Jan Paweł II Papież Polak"
 const details = document.querySelector("details")
 details.appendChild(pa)
+
+20.
