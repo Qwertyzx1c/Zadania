@@ -149,8 +149,10 @@ const dodatek = document.querySelector("details .info-text")
 dodatek.textContent = 'Jan Paweł 2 papież polak'
 
 7.
-const imie = document.createElement("label input")
+const imie = document.querySelector("label input")
 imie.setAttribute("value", 'Jan')
+const cos = imie.value
+console.log(cos)
 
 8.
 const wybierz = document.querySelector(".select")
@@ -186,3 +188,43 @@ body.appendChild(li2)
 body.appendChild(li3)
 
 13.
+const create = document.createElement("div class ='card'")
+const body = document.querySelector(".cards-section")
+body.appendChild(create)
+
+14.
+const div = document.createElement(".box")
+div.textContent = "Nowy Element"
+const body = document.querySelector(".boxes-container")
+body.appendChild(div)
+
+15.
+const p = document.createElement("p")
+p.textContent = "Jan Paweł II Papież Polak"
+const area = document.querySelector(".dynamic-area")
+area.appendChild(p)
+
+16.
+function addElement() {
+  var list = document.querySelector('#insertion-container');
+  var newItem = document.createElement('.box');
+  newItem.textContent = 'Nowy element';
+  list.insertBefore(newItem, list.firstChild);
+}
+
+17.
+const list = document.createElement("li")
+list.textContent = "Nowy Element"
+const dynamic = document.querySelector("#dynamic-list")
+dynamic.prepend(list)
+
+18.
+const s = document.createElement("span")
+const karta = document.querySelectorAll(".card-header")
+karta.appendChild(s)
+
+19.
+const pa = document.createElement("p")
+pa.textContent = "Jan Paweł II Papież Polak"
+const details = document.querySelector("details")
+details.appendChild(pa)
