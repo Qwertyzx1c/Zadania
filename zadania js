@@ -150,8 +150,13 @@ dodatek.textContent = 'Jan Paweł 2 papież polak'
 
 7.
 const imie = document.createElement("label input")
-imie.setAttribute("value", 'imie')
+imie.setAttribute("value", 'Jan')
 
 8.
 const wybierz = document.querySelector(".select")
-select.value = "de"
+wybierz.value = "de"
+
+9.
+
+
+10.
