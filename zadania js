@@ -325,6 +325,10 @@ for(let element of removable){
 }
 
 36.
+const test_form = document.querySelector("#test-form")
+test_form.addEventListener("sumbit", (event) => {
+    event.preventDefault()
+})
 
 37.
 
@@ -343,7 +347,7 @@ for(let card of cards){
 }
 
 40.
-const input = document.querySelector("input[name = 'nanme]")
+const input = document.querySelector("input[name = 'name]")
 
 input.addEventListener("keydown", (event) =>{
   if(event.key === "Enter") {
