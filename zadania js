@@ -338,6 +338,10 @@ test_form.addEventListener("sumbit", (event) => {
 })
 
 37.
+const select = document.querySelector(".select")
+select.addEventListener("change", (event) => {
+  console.log(event.target.value)
+})
 
 38.
 
