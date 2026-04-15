@@ -314,6 +314,13 @@ insert_before_btn.addEventListener("click", () => {
 })
 
 34.
+const add_box_btn = document.querySelector("#add-box-btn")
+add_box_btn.addEventListener("click", () => {
+  const box = document.querySelector(".boxes-container")
+  box.classList.add("box")
+  const insertion_conteiner =  document.querySelector(".boxes-container")
+  insertion_conteiner.prepend(box)
+})
 
 35.
 const removable = document.querySelectorAll(".removable")
