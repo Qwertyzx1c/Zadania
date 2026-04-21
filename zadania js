@@ -365,3 +365,97 @@ input.addEventListener("keydown", (event) =>{
     console.log(event.target.value)
   }
 })
+
+ZADANIA V3
+1.
+const header = document.querySelector("#main-header")
+
+2.
+const li = document.querySelectorAll("nav > li")
+
+3.
+const delete_trigger = document.querySelector(".delete-trigger")
+const firstChild = delete_trigger.firstElementChild;
+
+4.
+const content_area = document.querySelectorAll("#content-area > section")
+
+5.
+const data_secret = document.querySelector("[data-secret]")
+
+6.
+const data_link = document.querySelector("a[data-link='home']")
+const link = data_link.href
+
+7.
+const trigger_btn = document.querySelector("#trigger-btn")
+trigger_btn.closest(".level-1")
+
+8.
+const tr = document.querySelectorAll("tbody > tr")
+
+9.
+const figcaption = document.querySelector("figcaption")
+const main_image = figcaption.previousSibling("#main-image")
+
+10.
+const checkbox = document.querySelectorAll("legend > checkbox")
+
+11.
+const username = document.querySelector("#username")
+const rodzic = username.parentElement("#username")
+
+12.
+const notification_wrapper = document.querySelector (".notification-wrapper")
+const dziecko = notification_wrapper.childNodes(".notification_wrapper")
+
+13.
+const h1 = document.querySelector("h1").textContent
+
+14.
+const notification_list = document.querySelector("#notification-list")
+const ostatni = notification_list.lastElementChild("#notification-list")
+
+15.
+const nest = document.querySelectorAll(".nest.level-2")
+
+16.
+const li = document.createElement("li")
+const nav = document.querySelector(".nav-list")
+nav.prependChild(li)
+
+17.
+const button = document.createElement("button")
+button.textContent = "Logowanie"
+const nav = document.querySelector("nav")
+nav.appendChild(button)
+
+18.
+function myCreateFunction() {
+  var table = document.querySelector("#user-table");
+  var row = table.insertRow(0);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  cell1.innerHTML = "103";
+  cell2.innerHTML = "Piotr";
+}
+
+19.
+const newP = document.createElement("p")
+newP.textContent = 'Uwaga To Papież'
+const forms_demo = document.querySelector("#forms-demo")
+forms_demo.prepend(newP)
+
+20.
+const ul = document.createElement("ul")
+const ul2 = document.createElement("ul")
+const ul3 = document.createElement("ul")
+ul.textContent = "asdasddadsads"
+ul2.textContent = "adasdasdadsddddddddd"
+ul3.textContent = "asdadasdadsddddd"
+const skill_list = document.querySelector("#skill-list")
+skill_list.appendChild(ul)
+skill_list.appendChild(ul2)
+skill_list.appendChild(ul3)
+
+21.
