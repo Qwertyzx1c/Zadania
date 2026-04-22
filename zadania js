@@ -459,3 +459,8 @@ skill_list.appendChild(ul2)
 skill_list.appendChild(ul3)
 
 21.
+const p = document.querySelector(".notification-item, .alert");
+console.log(p)
+const p2 = p.cloneNode(true);
+const notification_wrapper = document.querySelector(".notification-wrapper")
+notification_wrapper.appendChild(p2)
