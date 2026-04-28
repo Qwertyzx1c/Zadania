@@ -604,3 +604,17 @@ description.forEach((des) => {
 50.
 const footer = document.querySelector("footer")
 footer.remove()
+
+52.
+const trigger_btn2 = document.querySelector("#trigger-btn")
+const data_secret = document.querySelector(".level-3 > p").textContent
+trigger_btn2.addEventListener("click", () => {
+  console.log(data_secret)
+})
+
+53.
+const delete_trigger = document.querySelector(".delete-trigger")
+const notification_item2 = document.querySelector(".notification-item")
+delete_trigger.addEventListener("click", () => {
+  delete_trigger.removeChild(notification_item2)
+})
