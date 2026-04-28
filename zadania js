@@ -407,14 +407,14 @@ const rodzic = username.parentElement("#username")
 
 12.
 const notification_wrapper = document.querySelector (".notification-wrapper")
-const dziecko = notification_wrapper.childNodes(".notification_wrapper")
+const dziecki = notification_wrapper.childNodes
 
 13.
 const h1 = document.querySelector("h1").textContent
 
 14.
 const notification_list = document.querySelector("#notification-list")
-const ostatni = notification_list.lastElementChild("#notification-list")
+const ostatni = notification_list.lastElementChild
 
 15.
 const nest = document.querySelectorAll(".nest.level-2")
@@ -495,9 +495,9 @@ role_select.appendChild(option)
 27.
 const style = document.createElement("style")
 const head = document.querySelector("head")
+style.textContent = "body{background-color: red}"
 head.appendChild(style)
-const body = document.querySelector("body")
-body.style.backgroundColor = "lightgrey"
+
 
 28.
 const button = document.createElement("button")
@@ -577,7 +577,7 @@ moderator.setAttribute("value", "Moderator")
 45.
 const active = document.querySelector(".active")
 const trigger_btn = document.querySelector("#trigger-btn")
-if (trigger_btn.contains(active)) {
+if (trigger_btn.classList.contains(active)) {
   console.log('Klasa jest')
 }
 
