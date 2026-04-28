@@ -565,3 +565,42 @@ const sukces = document.querySelector(".success")
 sukces.style.backgroundColor = "lightgreen"
 
 43.
+const atrybut = document.querySelector("a")
+for(const child of atrybut.children){
+  child.setAttribute("target", "_blank")
+}
+
+44.
+const moderator = document.querySelector("#username")
+moderator.setAttribute("value", "Moderator")
+
+45.
+const active = document.querySelector(".active")
+const trigger_btn = document.querySelector("#trigger-btn")
+if (trigger_btn.contains(active)) {
+  console.log('Klasa jest')
+}
+
+46.
+const notification_list = document.querySelector("#notification-list")
+const notification = document.querySelector(".notification-item")
+notification_list.removeChild(notification)
+
+47.
+const semantic_demo = document.querySelector("#semantic-demo")
+const semantic = semantic_demo.childNodes
+semantic_demo.remove(semantic)
+
+48.
+const jedendwa = document.querySelector("tr[data-user-id='102']")
+jedendwa.remove()
+
+49.
+const description = document.querySelectorAll(".description")
+description.forEach((des) => {
+  des.remove()
+})
+
+50.
+const footer = document.querySelector("footer")
+footer.remove()
