@@ -1,0 +1,50 @@
+Zad 1.
+SELECT imie, kolor, cena FROM klienci WHERE topKlient < 1;
+ 
+
+
+
+
+
+
+
+
+
+
+
+Zad 2.
+SELECT imie , cena FROM klienci WHERE DATE(termin) = "2024-05-23"; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zad 3.
+SELECT imie, kolor FROM klienci INNER JOIN ksztalty ON klienci.ksztalty_id = ksztalty.id WHERE ksztalty.ksztalt = "migdał";
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zad 4.
+ALTER TABLE ksztalty ADD COLUMN doplata INT(10);
+ `
+ 
