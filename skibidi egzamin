@@ -1,0 +1,13 @@
+Zad 1.
+SELECT nazwa, trudnosc, kalorie FROM potrawy WHERE idPotrawy = 7;
+ 
+
+Zad 2.
+SELECT nazwa FROM potrawy INNER JOIN rodzaje ON potrawy.idRodzaje = rodzaje.idRodzaje WHERE potrawy.idPotrawy = 7;
+  
+
+Zad 3.
+SELECT nazwa FROM potrawy INNER JOIN lista_alergenow ON potrawy.idPotrawy = lista_alergenow.idPotrawy INNER JOIN alergeny ON lista_alergenow.idAlergeny = alergeny.idAlergeny WHERE potrawy.idPotrawy = 7;
+ 
+Zad 4.
+SELECT przepis, plik FROM potrawy WHERE idPotrawy = 7;
