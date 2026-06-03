@@ -1,0 +1,29 @@
+1. 
+SELECT imie, nazwisko, email FROM klienci WHERE nazwisko LIKE "%ski";
+
+2.
+SELECT marka FROM samochody WHERE marka IN ("BMW", "Audi", "Mercedes") AND numer_rejestracyjny LIKE "%67%" AND rok_produkcji BETWEEN 2017 AND 2021;
+
+3.
+SELECT id_samochodu, COUNT(id_samochodu) FROM wypozyczenia GROUP BY year(data_wypozyczenia) ORDER BY data_wypozyczenia DESC;
+
+4.
+SELECT concat(marka, " ", model) AS pelna_nazwa , cena_doba FROM samochody GROUP BY id_samochodu ORDER BY cena_doba DESC;
+
+5.
+SELECT COUNT(id_platnosci), round(kwota, 2) FROM platnosci GROUP BY metoda_platnosci ORDER BY round(kwota) DESC;
+
+6.
+SELECT klienci.imie, count(wypozyczenia.id_klienta) FROM wypozyczenia INNER JOIN klienci ON wypozyczenia.id_klienta = klienci.id_klienta GROUP BY wypozyczenia.id_klienta ORDER BY COUNT(klienci.id_klienta) DESC;
+
+7.
+SELECT id_samochodu, COUNT(id_samochodu) FROM wypozyczenia GROUP BY year(data_wypozyczenia) ORDER BY COUNT(id_samochodu) DESC LIMIT 5;
+
+8.
+SELECT SUM(kwota_calosci) FROM faktury INNER JOIN wypozyczenia ON faktury.id_wypozyczenia = wypozyczenia.id_wypozyczenia INNER JOIN klienci ON wypozyczenia.id_klienta = klienci.id_klienta WHERE zaplacono = "tak" GROUP BY wypozyczenia.id_klienta ORDER BY SUM(zaplacono) DESC;
+
+9.
+SELECT marka, COUNT(serwisy.id_serwisu) FROM samochody LEFT JOIN serwisy ON samochody.id_samochodu = serwisy.id_samochodu GROUP BY samochody.id_samochodu ORDER BY COUNT(serwisy.id_serwisu) ASC;
+
+10.
+SELECT klienci.imie, COUNT(faktury.id_wypozyczenia) FROM klienci INNER JOIN wypozyczenia ON klienci.id_klienta = wypozyczenia.id_klienta LEFT JOIN faktury ON wypozyczenia.id_wypozyczenia = faktury.id_wypozyczenia WHERE nazwisko LIKE "%a%" GROUP BY klienci.id_klienta ORDER BY COUNT(faktury.id_wypozyczenia);
