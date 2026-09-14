@@ -23,4 +23,4 @@ SELECT tytul FROM ksiazki INNER JOIN wypozyczenia ON ksiazki.id_ksiazki = wypozy
 SELECT tytul FROM ksiazki GROUP BY id_ksiazki ORDER BY tytul ASC;
 SELECT CONCAT(imie,'', nazwisko) czytelnik, miasto, kod_pocztowy FROM czytelnicy GROUP BY id_czytelnika HAVING count(miasto) = 1 AND COUNT(kod_pocztowy) = 0;
 SELECT imie, nazwisko FROM pracownicy WHERE wynagrodzenie >= 4000.00;
-SELECT
+SELECT id_czytelnika, imie, nazwisko FROM czytelnicy GROUP BY miasto ORDER BY miasto ASC;
