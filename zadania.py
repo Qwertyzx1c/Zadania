@@ -1,3 +1,58 @@
+11.
+def palindrom(a):
+	a = input("Podaj wyraz do sprawdzenia: ").lower()
+
+	if a == a[::-1]:
+		print(True)
+	else:
+		print(False)
+print(palindrom("kajak"))
+palindrom("kajak")
+
+12.
+def liczby(a):
+	try:
+		return int(a)
+	except ValueError:
+		print(f"'{a}' to nie liczba!")
+		return None
+
+wynik = liczby("konstantynopolitańczykowianeczka")
+print(f"Wynik działania funkcji: {wynik}")
+
+13.
+def inicjaly(a):
+	wyraz = a.split()
+	return wyraz[0][0].upper()+ "." + wyraz[1][0].upper() + "."
+print(inicjaly("Jan Kowalski"))
+
+14.
+def duplikaty(lista):
+	return list(set(lista))
+print(duplikaty(lista = [1,2,3,4,5,6,7,7]))
+
+15.
+def uzytkownik(username,**kwargs):
+	return {"username": username, **kwargs}
+print(uzytkownik({
+    'role' : 'admin',
+    'height' : 'good'
+ }))
+
+16.
+def engram(a, b):
+	return sorted(a.lower()) == sorted(b.lower())
+print(engram("JOHNNY", "SILVERHAND"))
+
+17.
+def licz(lista):
+	wynik = {}
+
+	for x in lista:
+		wynik[x] = wynik.get(x, 0) + 1
+		return wynik
+print(licz("Kawa wjechała"))
+
 18.
 def maskuj(numer):
     if len(numer) < 4:
