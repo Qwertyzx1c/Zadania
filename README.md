@@ -1,1 +1,1 @@
-lubię w dupcie
+skibidi
