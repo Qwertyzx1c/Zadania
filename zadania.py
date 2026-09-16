@@ -122,3 +122,12 @@ def wiek(wiek):
         return "senior"
 
 print(wiek(20))
+
+25.
+def zegar(s):
+    g = s // 3600
+    m = (s % 3600) // 60
+    s = s % 60
+    return f"{g:02}:{m:02}:{s:02}"
+
+print(zegar(3665))
