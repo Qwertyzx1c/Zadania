@@ -40,6 +40,63 @@ def samogloski(tekst):
 print(samogloski("skibidi"))  
 print(samogloski("ale sigma"))
 
+6.
+def dodatnie(a):
+    wynik = []
+    for i in a:
+        if i > 0:
+            wynik.append(i)
+    return wynik
+
+print(dodatnie(a = (1, 7, 20, -50, -132123)))
+
+7.
+def przecena(cena, rabat):
+     if cena >= 0 and rabat > 0 and rabat < 101:
+          return round(cena * (1 - rabat / 100), 2)
+     else:
+          return None
+print(przecena(99, 2))
+
+8.
+slownik = {
+     "znaki": " ",
+     "ilosc wyrazow": " ",
+     "ilosc spacji": " "
+}
+
+def	statystyki(zdanie ,slownik):
+	z = len(zdanie)
+	s = len(zdanie.split())
+	sp = zdanie.count(" ", 0, len(zdanie))
+
+	slownik["znaki znaki"] = z
+	slownik["ilosc wyrazow"] = s
+	slownik["ilosz spacji"] = sp
+	return slownik
+print(statystyki("mikolaj i olek", slownik))
+
+9.
+def srednia(*a):
+	cyfry = int()
+	i = 0
+	for a in a:
+		cyfry += a
+		i += 1
+	wynik = cyfry / i
+	return wynik
+
+print(srednia(100, 657, 1230981238970, 1231983, 26766))
+
+10.
+def walec(promien, wysokosc):
+	def kolo(promien):
+		return 3.14 * (promien ** 2) 
+	kolo = kolo(promien)
+	walec = 2 * kolo + (2 * 3.14 * promien * wysokosc)
+	return float(walec)
+
+print(walec(4, 6))
 
 11.
 def palindrom(a):
