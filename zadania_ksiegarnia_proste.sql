@@ -97,3 +97,21 @@ JOIN gatunki g ON ks.id_gatunku = g.id_gatunku
 WHERE g.gatunek IN ('Fantastyka', 'Sensacja')
 GROUP BY k.id_klienta, k.imie, k.nazwisko
 HAVING COUNT(DISTINCT g.gatunek) = 2;
+
+-- 21
+SELECT k.id_klienta, k.imie, k.nazwisko,
+       SUM(ks.Cena) AS laczna_wartosc
+FROM klienci k
+JOIN sprzedaz s ON k.id_klienta = s.id_klienta
+JOIN ksiazki ks ON s.id_ksiazki = ks.id_ksiazki
+GROUP BY k.id_klienta, k.imie, k.nazwisko
+HAVING SUM(ks.Cena) > (
+    SELECT AVG(wartosc)
+    FROM (
+        SELECT SUM(ks2.Cena) AS wartosc
+        FROM sprzedaz s2
+        JOIN ksiazki ks2
+            ON s2.id_ksiazki = ks2.id_ksiazki
+        GROUP BY s2.id_klienta
+    ) AS srednie_zakupy
+);
