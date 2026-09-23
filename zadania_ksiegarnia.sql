@@ -10,7 +10,7 @@ FROM ksiazki
 WHERE Cena > 40;
 
 -- 3.
-SELECT miasto, COUNT(*) AS liczba_klientow
+SELECT miasto, COUNT(miasto) AS liczba_klientow
 FROM klienci
 GROUP BY miasto;
 
