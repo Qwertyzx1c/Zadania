@@ -5,10 +5,10 @@ SELECT * FROM klienci WHERE miasto = 'Lublin';
 SELECT tytul, Cena FROM ksiazki WHERE Cena > 40;
 
 -- 3
-SELECT miasto, COUNT(*) AS liczba_klientow FROM klienci GROUP BY miasto;
+SELECT miasto, COUNT(miasto) AS liczba_klientow FROM klienci GROUP BY miasto;
 
 -- 4
-SELECT id_klienta, COUNT(*) AS ilosc_zakupow FROM sprzedaz GROUP BY id_klienta;
+SELECT id_klienta, COUNT(id_klienta) AS ilosc_zakupow FROM sprzedaz GROUP BY id_klienta;
 
 -- 5
 SELECT * FROM klienci WHERE id_klienta NOT IN (SELECT id_klienta FROM sprzedaz);
