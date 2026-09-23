@@ -9,9 +9,6 @@ SELECT tytul, Cena
 FROM ksiazki
 WHERE Cena > 40;
 
--- 3. Policz liczbę klientów w każdym miesiącu.
--- Brak kolumny z datą rejestracji klienta w bazie.
-
 -- 4. Znajdź klientów, którzy dokonali zakupu (zawierający id_klienta) i ilość ich zakupów.
 SELECT id_klienta, COUNT(*) AS ilosc_zakupow
 FROM sprzedaz
@@ -68,9 +65,6 @@ JOIN sprzedaz s ON k.id_klienta = s.id_klienta
 JOIN ksiazki ks ON s.id_ksiazki = ks.id_ksiazki
 JOIN gatunki g ON ks.id_gatunku = g.id_gatunku
 WHERE g.gatunek IN ('Sensacja', 'Thriller');
-
--- 12. Znajdź klientów, którzy dokonali zakupów urodzonych przed 1990 rokiem.
--- Brak kolumny z datą urodzenia klienta w bazie.
 
 -- 13. Policz ilość książek w każdym gatunku.
 SELECT g.gatunek,
