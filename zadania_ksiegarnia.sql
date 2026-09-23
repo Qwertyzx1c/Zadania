@@ -1,5 +1,3 @@
--- BAZA DANYCH - KSIĘGARNIA
--- Zadania 1-21
 
 -- 1. Wybierz wszystkie informacje o klientach z miasta Lublin.
 SELECT *
