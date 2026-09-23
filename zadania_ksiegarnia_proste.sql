@@ -46,12 +46,6 @@ JOIN ksiazki ks ON s.id_ksiazki = ks.id_ksiazki
 JOIN gatunki g ON ks.id_gatunku = g.id_gatunku
 WHERE g.gatunek IN ('Sensacja', 'Thriller');
 
--- 12
-SELECT DISTINCT k.* FROM klienci k
-JOIN sprzedaz s ON k.id_klienta = s.id_klienta
-JOIN ksiazki ks ON s.id_ksiazki = ks.id_ksiazki
-WHERE ks.Cena > 40;
-
 -- 13
 SELECT g.gatunek, COUNT(ks.id_ksiazki) AS ilosc_ksiazek
 FROM gatunki g LEFT JOIN ksiazki ks ON g.id_gatunku = ks.id_gatunku
