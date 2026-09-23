@@ -71,6 +71,14 @@ JOIN ksiazki ks ON s.id_ksiazki = ks.id_ksiazki
 JOIN gatunki g ON ks.id_gatunku = g.id_gatunku
 WHERE g.gatunek IN ('Sensacja', 'Thriller');
 
+-- 12.
+SELECT DISTINCT k.*
+FROM klienci k
+JOIN sprzedaz s ON k.id_klienta = s.id_klienta
+JOIN ksiazki ks ON s.id_ksiazki = ks.id_ksiazki
+JOIN wydawnictwa w ON ks.id_wydawnictwa = w.id_wydawnictwa
+WHERE w.wydawnictwo = 'Helion';
+
 -- 13.
 SELECT g.gatunek,
        COUNT(ks.id_ksiazki) AS ilosc_ksiazek
