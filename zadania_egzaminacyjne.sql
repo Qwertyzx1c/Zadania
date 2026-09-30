@@ -1,7 +1,3 @@
--- ROZWIĄZANIA SQL - firma_handlowa
--- Zadania 1-55
--- Prosta wersja, MySQL/MariaDB
-
 -- =========================
 -- ZADANIA ŁATWE
 -- =========================
