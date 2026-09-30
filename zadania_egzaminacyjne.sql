@@ -396,28 +396,4 @@ FROM (
     GROUP BY z.id_zamowienia, z.data_zamowienia
 ) x
 GROUP BY MONTH(data_zamowienia)
-ORDER BY numer_miesiaca;
-
-
--- =========================
--- ZADANIA BARDZO TRUDNE
--- =========================
-
--- 46
-WITH dane AS (
-    SELECT k.id_klienta,
-           CASE WHEN k.typ_klienta = 'firma'
-                THEN k.nazwa_firmy
-                ELSE CONCAT(k.imie, ' ', k.nazwisko)
-           END AS klient,
-           COUNT(z.id_zamowienia) AS liczba_zamowien,
-           SUM(f.kwota_brutto) - COUNT(z.id_zamowienia) * 50 AS clv
-    FROM klienci k
-    JOIN zamowienia z ON z.klient_id = k.id_klienta
-    JOIN faktury f ON f.zamowienie_id = z.id_zamowienia
-    GROUP BY k.id_klienta, klient
-)
-SELECT klient, clv, liczba_zamowien
-FROM dane
-ORDER BY clv DESC
-LIMIT 10;
+ORDER BY MONTH(data_zamowienia)
