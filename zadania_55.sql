@@ -1,11 +1,3 @@
--- ROZWIĄZANIA SQL - firma_handlowa
--- Zadania 1-55
--- Prosta wersja, MySQL/MariaDB
-
--- =========================
--- ZADANIA ŁATWE
--- =========================
-
 -- 1
 SELECT * FROM produkty WHERE kategoria_id = 12;
 
