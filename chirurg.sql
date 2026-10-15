@@ -1,109 +1,135 @@
+CREATE DATABASE IF NOT EXISTS klinika_medyczna;
+USE klinika_medyczna;
 
-pacjenci
-	  id_pacjenta INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
-	  imie var(20),
-	  nazwisko	var(20),
-	  wiek	int,
-	  email	var(60) unique,
-	  numer_telefonu int,
-	  adres_zamieszkania var(20),
-    pesel int,
-    kontakt_alarmowy int
-	  
-wywiad_medyczny
-    id_wywiadu int auto_increment PRIMARY KEY ,
-    id_pacjenta INT ,
-    grupa_krwi var(10),
-    alergie var(50),
-    choroby_przewlekle var(50),
-    leki (50),
-    przebyte_operacje var(50),
-    palenie_tytoniu (10),
-    FOREIGN KEY (id_pacjenta) REFERENCES pacjenci(id_pacjenta)
+CREATE TABLE pacjenci (
+    id_pacjenta INT AUTO_INCREMENT PRIMARY KEY,
+    imie VARCHAR(20) NOT NULL,
+    nazwisko VARCHAR(30) NOT NULL,
+    wiek INT,
+    email VARCHAR(60) UNIQUE,
+    numer_telefonu VARCHAR(15),
+    adres_zamieszkania VARCHAR(100),
+    pesel CHAR(11) UNIQUE,
+    kontakt_alarmowy VARCHAR(15)
+);
 
-wizyty_i_konsultacje
-    id_wizyty int auto_increment PRIMARY KEY,
-    id_pacjenta INT,
-    id_personelu INT,
-    data_wizyty  date,
-    typ_wizyty var(50),
-    rozpoznanie var(50),
-    zalecenia var(50),
-    FOREIGN KEY (id_pacjenta) REFERENCES pacjenci(id_pacjenta),
-    FOREIGN KEY (id_personelu) REFERENCES personel(id_personelu)
+CREATE TABLE personel (
+    id_personelu INT AUTO_INCREMENT PRIMARY KEY,
+    imie VARCHAR(20) NOT NULL,
+    nazwisko VARCHAR(30) NOT NULL,
+    rola VARCHAR(20) NOT NULL,
+    specjalizacja VARCHAR(50),
+    numer_pwz VARCHAR(20) UNIQUE,
+    telefon VARCHAR(15),
+    email VARCHAR(50) NOT NULL UNIQUE
+);
 
-zabiegi_i_operacje
-    id_zabiegu int auto_increment PRIMARY KEY,
-    id_pacjenta int,
-    id_sali int,
-    nazwa_zabiegu var(50),
-    data_operacji date,
-    czas_trwania var(50),
-    znieczulenie var(50),
-    powiklania var(50),
-    FOREIGN KEY (id_pacjenta) REFERENCES pacjenci(id_pacjenta),
-    FOREIGN KEY (id_sali) REFERENCES sale_operacyjne(id_sali)
+CREATE TABLE sale_operacyjne (
+    id_sali INT AUTO_INCREMENT PRIMARY KEY,
+    numer_sali INT NOT NULL UNIQUE,
+    status VARCHAR(20) NOT NULL DEFAULT 'dostepna'
+);
 
-zdjecia_przed_po (opcjonalne)
-    id_zdjecia int auto_increment PRIMARY KEY,
-    id_pacjenta INT,
-    id_zabiegu INT,
+CREATE TABLE wywiad_medyczny (
+    id_wywiadu INT AUTO_INCREMENT PRIMARY KEY,
+    id_pacjenta INT NOT NULL UNIQUE,
+    grupa_krwi VARCHAR(3),
+    alergie VARCHAR(100),
+    choroby_przewlekle VARCHAR(100),
+    leki VARCHAR(100),
+    przebyte_operacje VARCHAR(100),
+    palenie_tytoniu VARCHAR(20),
+    FOREIGN KEY (id_pacjenta)
+        REFERENCES pacjenci(id_pacjenta)
+);
+
+CREATE TABLE wizyty_i_konsultacje (
+    id_wizyty INT AUTO_INCREMENT PRIMARY KEY,
+    id_pacjenta INT NOT NULL,
+    id_personelu INT NOT NULL,
+    data_wizyty DATE NOT NULL,
+    typ_wizyty VARCHAR(50) NOT NULL,
+    rozpoznanie VARCHAR(100),
+    zalecenia VARCHAR(100),
+    FOREIGN KEY (id_pacjenta)
+        REFERENCES pacjenci(id_pacjenta),
+    FOREIGN KEY (id_personelu)
+        REFERENCES personel(id_personelu)
+);
+
+CREATE TABLE zabiegi_i_operacje (
+    id_zabiegu INT AUTO_INCREMENT PRIMARY KEY,
+    id_pacjenta INT NOT NULL,
+    id_sali INT NOT NULL,
+    nazwa_zabiegu VARCHAR(50) NOT NULL,
+    data_operacji DATE NOT NULL,
+    czas_trwania INT,
+    znieczulenie VARCHAR(50),
+    powiklania VARCHAR(100),
+    FOREIGN KEY (id_pacjenta)
+        REFERENCES pacjenci(id_pacjenta),
+    FOREIGN KEY (id_sali)
+        REFERENCES sale_operacyjne(id_sali)
+);
+
+CREATE TABLE zdjecia_przed_po (
+    id_zdjecia INT AUTO_INCREMENT PRIMARY KEY,
+    id_pacjenta INT NOT NULL,
+    id_zabiegu INT NOT NULL,
     id_sali INT,
-    sciezka_pliku var(100),
-    typ_zdjecia var(20) (przed/po),
-    data_wykonania date,
-    FOREIGN KEY (id_pacjenta) REFERENCES pacjenci(id_pacjenta),
-    FOREIGN KEY (id_zabiegu) REFERENCES zabiegi_i_operacje(id_zabiegu),
-    FOREIGN KEY (id_sali) REFERENCES sale_operacyjne(id_sali)
+    sciezka_pliku VARCHAR(100) NOT NULL,
+    typ_zdjecia VARCHAR(10) NOT NULL,
+    data_wykonania DATE NOT NULL,
+    FOREIGN KEY (id_pacjenta)
+        REFERENCES pacjenci(id_pacjenta),
+    FOREIGN KEY (id_zabiegu)
+        REFERENCES zabiegi_i_operacje(id_zabiegu),
+    FOREIGN KEY (id_sali)
+        REFERENCES sale_operacyjne(id_sali)
+);
 
-zgody_medyczne
-    id_zgody int auto_increment PRIMARY KEY,
-    id_pacjenta INT,
-    typ_zgody var(20),
-    data_podpisania date,
-    status_podpisu var(20),
-    FOREIGN KEY (id_pacjenta) REFERENCES pacjenci(id_pacjenta)
+CREATE TABLE zgody_medyczne (
+    id_zgody INT AUTO_INCREMENT PRIMARY KEY,
+    id_pacjenta INT NOT NULL,
+    typ_zgody VARCHAR(30) NOT NULL,
+    data_podpisania DATE,
+    status_podpisu VARCHAR(20) NOT NULL DEFAULT 'oczekuje',
+    FOREIGN KEY (id_pacjenta)
+        REFERENCES pacjenci(id_pacjenta)
+);
 
-plany_leczenia
-    id_planu int auto_increment PRIMARY KEY,
-    id_pacjenta int,
-    cel var(100),
-    szacowany_koszt var(50),
-    status var(30),
-    FOREIGN KEY (id_pacjenta) REFERENCES pacjenci(id_pacjenta)
+CREATE TABLE plany_leczenia (
+    id_planu INT AUTO_INCREMENT PRIMARY KEY,
+    id_pacjenta INT NOT NULL,
+    cel VARCHAR(100) NOT NULL,
+    szacowany_koszt DECIMAL(10,2),
+    status VARCHAR(30) NOT NULL DEFAULT 'planowany',
+    FOREIGN KEY (id_pacjenta)
+        REFERENCES pacjenci(id_pacjenta)
+);
 
-personel
-    id_personelu int auto_increment PRIMARY KEY,
-    imie var(20),
-    nazwisko var(20),
-    rola var(20),
-    specjalizacja var(50),
-    numer_pwz int,
-    telefon int,
-    email var(50) UNIQUE
+CREATE TABLE magazyn_implanty (
+    id_implantu INT AUTO_INCREMENT PRIMARY KEY,
+    nazwa VARCHAR(50) NOT NULL,
+    producent VARCHAR(50) NOT NULL,
+    numer_serii_lot VARCHAR(50) NOT NULL,
+    rozmiar VARCHAR(20),
+    data_waznosci DATE NOT NULL,
+    ilostan INT NOT NULL DEFAULT 0,
+    UNIQUE (producent, numer_serii_lot)
+);
 
-sale_operacyjne
-    id_sali int auto_increment PRIMARY KEY,
-    numer_sali int,
-    status var(20)
-
-magazyn_implanty
-    id_implantu int auto_increment PRIMARY KEY,
-    nazwa var(50),
-    producent var(50),
-    numer_serii_lot int,
-    rozmiar var(20),
-    data_waznosci int,
-    ilostan int
-
-platnosci
-    id_platnosci int auto_increment PRIMARY KEY,
-    id_pacjenta int FOREIGN KEY,
-    id_zabiegu int FOREIGN KEY,
-    kwota int,
-    forma_platnosci var(50),
-    status_platnosci var(50),
-    data_platnosci date,
-    nr_faktury int,
-    FOREIGN KEY (id_pacjenta) REFERENCES pacjenci(id_pacjenta),
-    FOREIGN KEY (id_zabiegu) REFERENCES zabiegi_i_operacje(id_zabiegu)
+CREATE TABLE platnosci (
+    id_platnosci INT AUTO_INCREMENT PRIMARY KEY,
+    id_pacjenta INT NOT NULL,
+    id_zabiegu INT,
+    kwota DECIMAL(10,2) NOT NULL,
+    forma_platnosci VARCHAR(30) NOT NULL,
+    status_platnosci VARCHAR(30) NOT NULL DEFAULT 'oczekujaca',
+    data_platnosci DATE,
+    nr_faktury VARCHAR(30) UNIQUE,
+    FOREIGN KEY (id_pacjenta)
+        REFERENCES pacjenci(id_pacjenta),
+    FOREIGN KEY (id_zabiegu)
+        REFERENCES zabiegi_i_operacje(id_zabiegu)
+);
