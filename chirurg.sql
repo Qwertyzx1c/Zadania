@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS klinika_medyczna;
-USE klinika_medyczna;
+CREATE DATABASE IF NOT EXISTS operacje_chirurgiczne;
+USE operacje_chirurgiczne;
 
 CREATE TABLE pacjenci (
     id_pacjenta INT AUTO_INCREMENT PRIMARY KEY,
