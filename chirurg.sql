@@ -1,8 +1,8 @@
-CREATE DATABASE IF NOT EXISTS operacje_chirurgiczne
+CREATE DATABASE IF NOT EXISTS operacje_plastyczne
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_polish_ci;
 
-USE operacje_chirurgiczne;
+USE operacje_plastyczne;
 
 CREATE TABLE pacjenci (
     id_pacjenta INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
