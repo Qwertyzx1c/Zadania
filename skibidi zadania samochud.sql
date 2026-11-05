@@ -104,3 +104,80 @@ GROUP BY k.id_klienta, k.imie, k.nazwisko;
 SELECT metoda_platnosci, AVG(kwota) AS srednia_kwota
 FROM Platnosci
 GROUP BY metoda_platnosci;
+
+-- 18
+SELECT MONTH(data_platnosci) AS miesiac,
+COUNT(*) AS liczba_platnosci
+FROM Platnosci
+WHERE data_platnosci >= '2023-01-01'
+AND data_platnosci < '2024-01-01'
+GROUP BY MONTH(data_platnosci)
+ORDER BY miesiac;
+
+-- 19
+SELECT k.id_klienta, k.imie, k.nazwisko,
+COUNT(p.id_platnosci) AS liczba_platnosci
+FROM Klienci k
+INNER JOIN Wypozyczenia w ON w.id_klienta = k.id_klienta
+INNER JOIN Faktury f ON f.id_wypozyczenia = w.id_wypozyczenia
+INNER JOIN Platnosci p ON p.id_faktury = f.id_faktury
+GROUP BY k.id_klienta, k.imie, k.nazwisko
+HAVING COUNT(p.id_platnosci) >= 2;
+
+-- 20
+SELECT s.id_samochodu, s.marka, s.model,
+AVG(o.ocena) AS srednia_ocena
+FROM Samochody s
+INNER JOIN Opinie o ON o.id_samochodu = s.id_samochodu
+GROUP BY s.id_samochodu, s.marka, s.model;
+
+-- 21
+SELECT SUBSTRING_INDEX(k.adres, ', ', 1) AS miejscowosc,
+COUNT(f.id_faktury) AS liczba_zaplaconych_faktur
+FROM Klienci k
+INNER JOIN Wypozyczenia w ON w.id_klienta = k.id_klienta
+INNER JOIN Faktury f ON f.id_wypozyczenia = w.id_wypozyczenia
+WHERE f.zaplacono = 'tak'
+GROUP BY SUBSTRING_INDEX(k.adres, ', ', 1);
+
+-- 22
+SELECT k.id_klienta, k.imie, k.nazwisko,
+AVG(o.ocena) AS srednia_ocena
+FROM Klienci k
+INNER JOIN Opinie o ON o.id_klienta = k.id_klienta
+GROUP BY k.id_klienta, k.imie, k.nazwisko
+HAVING AVG(o.ocena) >= 4;
+
+-- 23
+SELECT YEAR(data_faktury) AS rok,
+MONTH(data_faktury) AS miesiac,
+COUNT(*) AS liczba_faktur
+FROM Faktury
+GROUP BY YEAR(data_faktury), MONTH(data_faktury)
+ORDER BY rok, miesiac;
+
+-- 24
+SELECT k.id_klienta, k.imie, k.nazwisko,
+AVG(f.kwota_calosci) AS srednia_kwota_faktur
+FROM Klienci k
+INNER JOIN Wypozyczenia w ON w.id_klienta = k.id_klienta
+INNER JOIN Faktury f ON f.id_wypozyczenia = w.id_wypozyczenia
+GROUP BY k.id_klienta, k.imie, k.nazwisko
+HAVING AVG(f.kwota_calosci) > 600;
+
+-- 25
+SELECT k.id_klienta, k.imie, k.nazwisko,
+SUM(p.kwota) AS suma_platnosci
+FROM Klienci k
+INNER JOIN Wypozyczenia w ON w.id_klienta = k.id_klienta
+INNER JOIN Faktury f ON f.id_wypozyczenia = w.id_wypozyczenia
+INNER JOIN Platnosci p ON p.id_faktury = f.id_faktury
+GROUP BY k.id_klienta, k.imie, k.nazwisko
+HAVING SUM(p.kwota) > 1000;
+
+-- 26
+SELECT metoda_platnosci, AVG(kwota) AS srednia_kwota
+FROM Platnosci
+GROUP BY metoda_platnosci
+HAVING AVG(kwota) > 500;
+
