@@ -131,15 +131,6 @@ FROM Samochody s
 INNER JOIN Opinie o ON o.id_samochodu = s.id_samochodu
 GROUP BY s.id_samochodu, s.marka, s.model;
 
--- 21
-SELECT SUBSTRING_INDEX(k.adres, ', ', 1) AS miejscowosc,
-COUNT(f.id_faktury) AS liczba_zaplaconych_faktur
-FROM Klienci k
-INNER JOIN Wypozyczenia w ON w.id_klienta = k.id_klienta
-INNER JOIN Faktury f ON f.id_wypozyczenia = w.id_wypozyczenia
-WHERE f.zaplacono = 'tak'
-GROUP BY SUBSTRING_INDEX(k.adres, ', ', 1);
-
 -- 22
 SELECT k.id_klienta, k.imie, k.nazwisko,
 AVG(o.ocena) AS srednia_ocena
