@@ -9,56 +9,56 @@ WHERE status = 'serwis';
 -- 9.
 CREATE VIEW widok_koszty_serwisu AS
 SELECT 
-    Samochody.marka,
-    Samochody.model,
-    Samochody.numer_rejestracyjny,
-    COUNT(Serwisy.id_serwisu) AS liczba_serwisow,
-    SUM(Serwisy.koszt) AS laczny_koszt
-FROM Samochody
-JOIN Serwisy ON Samochody.id_samochodu = Serwisy.id_samochodu
-GROUP BY Samochody.id_samochodu, Samochody.marka, Samochody.model, Samochody.numer_rejestracyjny
+    s.marka,
+    s.model,
+    s.numer_rejestracyjny,
+    COUNT(ser.id_serwisu) AS liczba_serwisow,
+    SUM(ser.koszt) AS laczny_koszt
+FROM Samochody s
+JOIN Serwisy ser ON s.id_samochodu = ser.id_samochodu
+GROUP BY s.id_samochodu, s.marka, s.model, s.numer_rejestracyjny
 ORDER BY laczny_koszt DESC;
 
 
 -- 10.
 CREATE VIEW widok_oceny_samochodow AS
 SELECT
-    Samochody.marka,
-    Samochody.model,
-    COUNT(Opinie.id_opinii) AS liczba_opinii,
-    ROUND(AVG(Opinie.ocena), 2) AS srednia_ocena
-FROM Samochody
-JOIN Opinie ON Samochody.id_samochodu = Opinie.id_samochodu
-GROUP BY Samochody.id_samochodu, Samochody.marka, Samochody.model;
+    s.marka,
+    s.model,
+    COUNT(o.id_opinii) AS liczba_opinii,
+    ROUND(AVG(o.ocena), 2) AS srednia_ocena
+FROM Samochody s
+JOIN Opinie o  ON s.id_samochodu = o.id_samochodu
+GROUP BY s.id_samochodu, s.marka, s.model;
 
 
 -- 11.
 CREATE VIEW widok_niezaplacone_faktury AS
 SELECT
-    Faktury.id_faktury AS numer_faktury,
-    Faktury.data_faktury,
-    Faktury.kwota_calosci,
-    Klienci.imie,
-    Klienci.nazwisko
-FROM Faktury
-JOIN Wypozyczenia ON Faktury.id_wypozyczenia = Wypozyczenia.id_wypozyczenia
-JOIN Klienci ON Wypozyczenia.id_klienta = Klienci.id_klienta
-WHERE Faktury.zaplacono = 'nie';
+    f.id_faktury AS numer_faktury,
+    f.data_faktury,
+    f.kwota_calosci,
+    k.imie,
+    k.nazwisko
+FROM Faktury f
+JOIN Wypozyczenia w ON f.id_wypozyczenia = w.id_wypozyczenia
+JOIN Klienci k ON w.id_klienta = k.id_klienta
+WHERE f.zaplacono = 'nie';
 
 
 -- 12.
 CREATE VIEW widok_trwajace_wypozyczenia AS
 SELECT
-    Klienci.imie,
-    Klienci.nazwisko,
-    Samochody.marka,
-    Samochody.model,
-    Wypozyczenia.data_wypozyczenia,
-    DATEDIFF(CURDATE(), Wypozyczenia.data_wypozyczenia) AS liczba_dni
-FROM Wypozyczenia
-JOIN Klienci ON Wypozyczenia.id_klienta = Klienci.id_klienta
-JOIN Samochody ON Wypozyczenia.id_samochodu = Samochody.id_samochodu
-WHERE Wypozyczenia.status = 'wypożyczony';
+    k.imie,
+    k.nazwisko,
+    s.marka,
+    s.model,
+    w.data_wypozyczenia,
+    DATEDIFF(CURDATE(), w.data_wypozyczenia) AS liczba_dni
+FROM Wypozyczenia w
+JOIN Klienci k ON w.id_klienta = k.id_klienta
+JOIN Samochody s ON w.id_samochodu = s.id_samochodu
+WHERE w.status = 'wypożyczony';
 
 
 -- 13.
