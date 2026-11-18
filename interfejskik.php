@@ -29,7 +29,7 @@ echo $data->cos("Jeden","Dwa");
 
 
 interface Drivable{
-
+    public function drive();
 }
 
 class Car implements Drivable{
