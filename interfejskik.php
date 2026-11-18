@@ -1,113 +1,45 @@
 <?php
-
-interface Renderable
-{
-    public function render(): string;
+interface Render{
+    public function jamnik($jamnik);
 }
 
-class HtmlElement implements Renderable
-{
-    private string $content;
+interface Json{
+    public function cos($jeden, $dwa);
+}
 
-    public function __construct(string $content)
-    {
-        $this->content = $content;
-    }
-
-    public function render(): string
-    {
-        return "<div>{$this->content}</div>";
+class Renderer implements Render{
+    public function jamnik($jamnik){
+        return $jamnik;
     }
 }
 
-$html = new HtmlElement("Hello World");
-echo $html->render();
-
-
-
-interface JsonSerializable
-{
-    public function jsonSerialize(): array;
-}
-
-class User implements JsonSerializable
-{
-    private string $name;
-    private int $age;
-
-    public function __construct(string $name, int $age)
-    {
-        $this->name = $name;
-        $this->age = $age;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            "name" => $this->name,
-            "age" => $this->age
-        ];
+class Product implements Json{
+    public function cos($jeden, $dwa){
+        print_r($data = [$jeden,$dwa]);
     }
 }
 
-$user = new User("Jan", 25);
+$renderer = new Renderer();
+echo $renderer->jamnik("Jamnik");
 
-print_r($user->jsonSerialize());
+$data = new Product();
+echo $data->cos("Jeden","Dwa");
 
 
-interface Drivable
-{
-    public function drive(): string;
+
+
+interface Drivable{
+
 }
 
-class Car implements Drivable
-{
-    public function drive(): string
-    {
-        return "Samochód jedzie po drodze.";
+class Car implements Drivable{
+    public function drive(){
+        return "samochód robi vroom";
     }
 }
 
-class Bike implements Drivable
-{
-    public function drive(): string
-    {
-        return "Rower jedzie po ścieżce rowerowej.";
+class Bike implements Drivable{
+    public function drive(){
+        return "motor nie robi vroom";
     }
 }
-
-$car = new Car();
-$bike = new Bike();
-
-echo $car->drive() . "\n";
-echo $bike->drive() . "\n";
-
-
-class Product implements JsonSerializable
-{
-    private string $name;
-    private float $price;
-    private int $quantity;
-
-    public function __construct(string $name, float $price, int $quantity)
-    {
-        $this->name = $name;
-        $this->price = $price;
-        $this->quantity = $quantity;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            "name" => $this->name,
-            "price" => $this->price,
-            "quantity" => $this->quantity
-        ];
-    }
-}
-
-$product = new Product("Laptop", 3500.00, 5);
-
-print_r($product->jsonSerialize());
-
-
