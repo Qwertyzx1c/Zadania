@@ -1,39 +1,19 @@
 
 <?php
 
-// INTERFEJS
-interface sqlinterface
-{
+interface sqlinterface {
     public function FindAll($table);
     public function Find($table, $id);
     public function ReadOne($table, $id);
     public function ReadFirstTen($table);
 }
 
-
-// KLASA ABSTRAKCYJNA
-abstract class database
-{
-    protected $host = "localhost";
-    protected $user = "root";
-    protected $password = "";
-    protected $dbname = "test";
-
+abstract class database {
     protected $connection;
 
-    public function connect()
-    {
-        $this->connection = mysqli_connect(
-            $this->host,
-            $this->user,
-            $this->password
-        );
-
-        if (!$this->connection) {
-            die("Blad polaczenia: " . mysqli_connect_error());
-        }
-
-        return true;
+    public function connect() {
+        $this->connection = mysqli_connect("localhost", "root", "", "test");
+        return $this->connection;
     }
 
     abstract public function createDatabase($name);
@@ -43,190 +23,88 @@ abstract class database
     abstract public function deleteTable($table);
 }
 
+class mysqldb extends database implements sqlinterface {
 
-// KLASA MYSQLDB
-class mysqldb extends database implements sqlinterface
-{
-    public function createDatabase($name)
-    {
-        $sql = "CREATE DATABASE IF NOT EXISTS `$name`";
+    public function createDatabase($name) {
+        return mysqli_query($this->connection, "CREATE DATABASE IF NOT EXISTS $name");
+    }
 
+    public function createTable($sql) {
         return mysqli_query($this->connection, $sql);
     }
 
-    public function createTable($sql)
-    {
-        return mysqli_query($this->connection, $sql);
+    public function readTable($table) {
+        return mysqli_query($this->connection, "SELECT * FROM $table");
     }
 
-    public function readTable($table)
-    {
-        return mysqli_query(
-            $this->connection,
-            "SELECT * FROM `$table`"
-        );
-    }
-
-    public function updateTable($sql, $params)
-    {
+    public function updateTable($sql, $params) {
         $stmt = mysqli_prepare($this->connection, $sql);
-
-        if (!$stmt) {
-            return false;
-        }
-
-        $types = str_repeat("s", count($params));
-
-        if (!empty($params)) {
-            mysqli_stmt_bind_param($stmt, $types, ...$params);
-        }
-
-        $result = mysqli_stmt_execute($stmt);
-
-        mysqli_stmt_close($stmt);
-
-        return $result;
+        mysqli_stmt_bind_param($stmt, str_repeat("s", count($params)), ...$params);
+        return mysqli_stmt_execute($stmt);
     }
 
-    public function deleteTable($table)
-    {
-        return mysqli_query(
-            $this->connection,
-            "DROP TABLE IF EXISTS `$table`"
-        );
+    public function deleteTable($table) {
+        return mysqli_query($this->connection, "DROP TABLE $table");
     }
 
-
-    // METODY INTERFEJSU
-
-    public function FindAll($table)
-    {
+    public function FindAll($table) {
         return $this->readTable($table);
     }
 
-    public function Find($table, $id)
-    {
-        $sql = "SELECT * FROM `$table` WHERE id = ?";
-
-        $stmt = mysqli_prepare($this->connection, $sql);
-
+    public function Find($table, $id) {
+        $stmt = mysqli_prepare($this->connection, "SELECT * FROM $table WHERE id = ?");
         mysqli_stmt_bind_param($stmt, "i", $id);
-
         mysqli_stmt_execute($stmt);
-
-        $result = mysqli_stmt_get_result($stmt);
-
-        mysqli_stmt_close($stmt);
-
-        return $result;
+        return mysqli_stmt_get_result($stmt);
     }
 
-    public function ReadOne($table, $id)
-    {
-        $result = $this->Find($table, $id);
-
-        return mysqli_fetch_assoc($result);
+    public function ReadOne($table, $id) {
+        return mysqli_fetch_assoc($this->Find($table, $id));
     }
 
-    public function ReadFirstTen($table)
-    {
-        return mysqli_query(
-            $this->connection,
-            "SELECT * FROM `$table` LIMIT 10"
-        );
+    public function ReadFirstTen($table) {
+        return mysqli_query($this->connection, "SELECT * FROM $table LIMIT 10");
     }
 }
 
-
-// KLASA TESTUJACA
-class TestDatabase
-{
-    public function test($result, $name)
-    {
-        if ($result) {
-            echo "<p style='color:green'>[OK] $name</p>";
-        } else {
-            echo "<p style='color:red'>[BLAD] $name</p>";
-        }
+class TestDatabase {
+    public function test($result, $name) {
+        echo $result ? "[OK] $name<br>" : "[BLAD] $name<br>";
     }
 }
-
-
-// URUCHOMIENIE PROGRAMU
 
 $db = new mysqldb();
 $test = new TestDatabase();
 
-echo "<h2>TESTOWANIE MYSQLDB</h2>";
-
-// Polaczenie
 $db->connect();
-$test->test(true, "Polaczenie z MySQL");
+$test->test($db->connect(), "Polaczenie");
 
-// Tworzenie bazy
-$result = $db->createDatabase("test");
-$test->test($result, "Tworzenie bazy danych");
+$db->createDatabase("test");
 
-// Wybranie bazy
 mysqli_select_db($db->connect(), "test");
 
-// Tworzenie tabeli
-$sql = "CREATE TABLE IF NOT EXISTS users (
+$db->createTable("CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100),
     email VARCHAR(100)
-)";
+)");
 
-$result = $db->createTable($sql);
-$test->test($result, "Tworzenie tabeli");
-
-// Dodawanie danych
-$result = $db->updateTable(
+$test->test($db->updateTable(
     "INSERT INTO users (name, email) VALUES (?, ?)",
     ["Jan", "jan@test.pl"]
-);
+), "Dodawanie");
 
-$test->test($result, "Dodawanie danych");
+$test->test($db->FindAll("users"), "FindAll");
+$test->test($db->Find("users", 1), "Find");
+$test->test($db->ReadOne("users", 1), "ReadOne");
+$test->test($db->ReadFirstTen("users"), "ReadFirstTen");
 
-// FindAll
-$result = $db->FindAll("users");
-$test->test($result, "FindAll");
-
-while ($row = mysqli_fetch_assoc($result)) {
-    print_r($row);
-    echo "<br>";
-}
-
-// Find
-$result = $db->Find("users", 1);
-$test->test($result, "Find");
-
-// ReadOne
-$result = $db->ReadOne("users", 1);
-$test->test($result !== null, "ReadOne");
-
-echo "<pre>";
-print_r($result);
-echo "</pre>";
-
-// ReadFirstTen
-$result = $db->ReadFirstTen("users");
-$test->test($result, "ReadFirstTen");
-
-// Aktualizacja
-$result = $db->updateTable(
+$test->test($db->updateTable(
     "UPDATE users SET name = ? WHERE id = ?",
     ["Adam", 1]
-);
+), "Aktualizacja");
 
-$test->test($result, "Aktualizacja danych");
-
-// Odczyt tabeli
-$result = $db->readTable("users");
-$test->test($result, "Odczytywanie tabeli");
-
-// Usuwanie tabeli
-$result = $db->deleteTable("users");
-$test->test($result, "Usuwanie tabeli");
+$test->test($db->readTable("users"), "Odczyt");
+$test->test($db->deleteTable("users"), "Usuwanie");
 
 ?>
