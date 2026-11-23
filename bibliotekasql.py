@@ -4,15 +4,6 @@ conn = sqlite3.connect('biblioteka.db')
 
 cursor = conn.cursor()
 
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS ksiazki (
-        id_ksiazki INTEGER PRIMARY KEY,
-        tytul TEXT,
-        autor TEXT,
-        rok_wydania INTEGER
-    )
-''')
-
 def add():
     tytul = input("Podaj tytuł: ")
     autor = input("Podaj autora: ")
