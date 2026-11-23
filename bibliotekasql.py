@@ -4,6 +4,17 @@ conn = sqlite3.connect('biblioteka.db')
 
 cursor = conn.cursor()
 
+def stworz_tabele():
+	cursor.execute('''
+    	CREATE TABLE IF NOT EXISTS ksiazki (
+        	id_ksiazki INTEGER PRIMARY KEY,
+        	tytul TEXT,
+        	autor TEXT,
+        	rok_wydania INTEGER
+	    )
+	''')
+stworz_tabele()
+
 def add():
     tytul = input("Podaj tytuł: ")
     autor = input("Podaj autora: ")
@@ -11,28 +22,26 @@ def add():
 
     cursor.execute('''
     INSERT INTO ksiazki (tytul, autor, rok_wydania) VALUES (?, ?, ?)
-''', (tytul, autor, wydanie))
+	''', (tytul, autor, wydanie))
     
-conn.commit()
+    conn.commit()
     
 def delete():
     ksiazka = int(input("Podaj id książki: "))
 
     cursor.execute('''
     DELETE FROM ksiazki WHERE id_ksiazki = ?
-''', (ksiazka))
+	''', (ksiazka,))
     
-conn.commit()
+    conn.commit()
     
 def show():
 
-    cursor.execute('SELECT * FROM users')
-rows = cursor.fetchall()
+    cursor.execute('SELECT * FROM ksiazki')
+    rows = cursor.fetchall()
 
-for row in rows:
-    print(row)
-    
-conn.commit()   
+    for row in rows:
+        print(row) 
 
 
 def update():
@@ -43,7 +52,7 @@ def update():
     UPDATE ksiazki SET tytul = ? WHERE id_ksiazki = ?
 ''', (tytul, id))
     
-conn.commit()   
+    conn.commit()   
 
 
 def menu():
