@@ -1,0 +1,84 @@
+import sqlite3
+
+conn = sqlite3.connect('rezerwacje2.db') 
+
+cursor = conn.cursor()
+
+def stworz_tabele():
+	cursor.execute('''
+    	CREATE TABLE IF NOT EXISTS  rezerwacje(
+        	id_rezerwacji INTEGER PRIMARY KEY,
+        	imie TEXT,
+        	wydarzenie TEXT,
+        	ilosc_osób INTEGER
+	    )
+	''')
+stworz_tabele()
+
+def add():
+    imie = input("Podaj imie: ")
+    wydarzenie = input("Podaj na jakie wydarzenie: ")
+    ilosc = int(input("Podaj ile osób: "))
+
+    cursor.execute('''
+    INSERT INTO rezerwacje (imie, wydarzenie, ilosc_osób) VALUES (?, ?, ?)
+	''', (imie, wydarzenie, ilosc))
+    
+    conn.commit()
+    
+def delete():
+    id = int(input("Podaj id rezerwacji: "))
+
+    cursor.execute('''
+    DELETE FROM rezerwacje WHERE id_rezerwacji = ?
+	''', (id,))
+    
+    conn.commit()
+    
+def show():
+
+    cursor.execute('SELECT * FROM rezerwacje')
+    rows = cursor.fetchall()
+
+    for row in rows:
+        print(row) 
+
+
+def update():
+    id = int(input("Podaj id do zmienienia: "))
+    imie = input("Podaj wydarzenie: ")
+
+    cursor.execute('''
+    UPDATE rezerwacje SET wydarzenie = ? WHERE id_rezerwacji = ?
+''', (imie, id))
+    
+    conn.commit()   
+
+
+def menu():
+    while True:
+        print("\n========== BIBLIOTEKA ==========")
+        print("1. Dodaj rezerwacje")
+        print("2. Usuń rezerwacje")
+        print("3. Wyświetl wszystkie rezerwacje")
+        print("4. Zaktualizuj rezerwacje")
+        print("5. Zakończ program")
+
+        wybor = input("\nWybierz opcję: ")
+
+        if wybor == "1":
+            add()
+        elif wybor == "2":
+            delete()
+        elif wybor == "3":
+            show()
+        elif wybor == "4":
+            update()
+        elif wybor == "5":
+            print("Dziękujemy za skorzystanie z restauracji!")
+            break
+        else:
+            print("Nie ma takiej opcji!")
+
+
+menu()
